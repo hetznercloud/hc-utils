@@ -1,0 +1,10 @@
+# read MAC address
+ENV{MATCHADDR}="$attr{address}"
+
+# do not use empty address
+ENV{MATCHADDR}=="00:00:00:00:00:00", GOTO="net_dhcp_end"
+
+ACTION=="add", SUBSYSTEM=="net", ENV{ID_NET_NAME}=="ens*",  TAG+="systemd", ENV{SYSTEMD_WANTS}+="hc-net-ifup@$env{ID_NET_NAME}"
+ACTION=="remove", SUBSYSTEM=="net", ENV{ID_NET_NAME}=="ens*", RUN+="/sbin/ip link set $env{ID_NET_NAME} down"
+
+LABEL="net_dhcp_end"

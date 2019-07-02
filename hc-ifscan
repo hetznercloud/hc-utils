@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $UID -ne 0 ]; then
+  echo "error: ${0##*/} must be run as root"
+  exit 1
+fi
+
+logger --tag hc-ifscan "[hc-ifscan] Scanning for unconfigured interfaces"
+for dev in $(find /sys/class/net/ens*) ; do
+  state=$(cat ${dev}/operstate)
+  if [ "${state}" == "down" ] ; then
+    logger --tag hc2-net "[hc-ifscan] Configuring ${dev##*/}"
+    echo 'add' > ${dev}/uevent
+  fi
+done

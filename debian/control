@@ -1,0 +1,13 @@
+Source: hc-net-utils
+Section: admin
+Priority: optional
+Maintainer: Markus Schade <markus.schade@hetzner.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 4.3.0
+Homepage: https://github.com/hetznercloud/hc-net-utils
+
+Package: hc-net-utils
+Architecture: any
+Description: A set of network tools for Hetzner Cloud PNIs
+ hc-net-utils contains utilities to automatically configure
+ Hetzner Cloud private network interfaces.
