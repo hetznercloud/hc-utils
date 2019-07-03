@@ -1,0 +1,28 @@
+# Check if it is a Hetzner Cloud Volume
+ACTION!="add", GOTO="FINISH"
+SUBSYSTEM!="block", GOTO="FINISH"
+ENV{ID_VENDOR}!="HC", GOTO="FINISH"
+ENV{ID_MODEL}!="Volume", GOTO="FINISH"
+ENV{ID_FS_TYPE}=="", GOTO="FINISH"
+
+# Abort unless the user explicitly requests this feature
+#   The API returns a success code when the automount option is active.
+#   This is just a oneshot url with an expiry of just a few mintutes.
+#   On any error (404 on the URL, no curl installed, or timeout, ...) the rule will abort
+IMPORT{program}="/bin/sh -c 'curl --max-time 1 --fail 169.254.169.254/_internal/v1/volumes/$env{ID_SERIAL_SHORT} > /dev/null 2>&1 && echo HC_CONFIGURE=yes'"
+ENV{HC_CONFIGURE}!="yes", GOTO="FINISH"
+
+ENV{MOUNT_PATH}="/mnt/%E{ID_VENDOR}_%E{ID_MODEL}_%E{ID_SERIAL_SHORT}"
+ENV{SOURCE_PATH}="/dev/disk/by-id/%E{ID_BUS}-%E{ID_SERIAL}"
+RUN{program}+="/bin/mkdir -p %E{MOUNT_PATH}"
+
+# Create an fstab entry
+RUN{program}+="/bin/sh -c 'grep -q %E{SOURCE_PATH} /etc/fstab || echo %E{SOURCE_PATH} %E{MOUNT_PATH} %E{ID_FS_TYPE} discard,nofail,defaults 0 0 >> /etc/fstab'"
+
+# Manually trigger the fstab to systemd.mount generator
+RUN{program}+="/bin/systemctl daemon-reload"
+
+# Activates the new rule
+RUN{program}+="/bin/systemctl restart local-fs.target"
+
+LABEL="FINISH"
