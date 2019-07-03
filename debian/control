@@ -18,6 +18,7 @@ Description: Metapackage which depends on all utility packages
 
 Package: hc-net-utils
 Architecture: all
+Depends: iproute2
 Description: A set of network tools for Hetzner Cloud PNIs
  hc-net-utils contains utilities to automatically configure
  Hetzner Cloud private network interfaces.
