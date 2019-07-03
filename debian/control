@@ -2,7 +2,9 @@ Source: hc-utils
 Section: admin
 Priority: optional
 Maintainer: Markus Schade <markus.schade@hetzner.com>
-Build-Depends: debhelper (>= 9)
+Build-Depends:
+ debhelper (>= 9),
+ dh-systemd
 Standards-Version: 4.3.0
 Homepage: https://github.com/hetznercloud/hc-net-utils
 
