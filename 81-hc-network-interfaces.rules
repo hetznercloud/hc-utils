@@ -1,0 +1,8 @@
+# Copyright 2019 Hetzner Online GmbH
+#
+# Licensed under the MIT License. See the LICENSE accompanying this file
+# for the specific language governing permissions and limitations under
+# the License.
+
+ACTION=="add", SUBSYSTEM=="net", ENV{ID_NET_NAME_MAC}=="enx860000*",  TAG+="systemd", ENV{SYSTEMD_WANTS}+="hc-net-ifup@$env{INTERFACE}"
+ACTION=="remove", SUBSYSTEM=="net", RUN+="/sbin/ip link set $env{INTERFACE} down"
