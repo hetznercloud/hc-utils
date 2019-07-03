@@ -8,7 +8,9 @@ Homepage: https://github.com/hetznercloud/hc-net-utils
 
 Package: hc-utils
 Architecture: all
-Depends: hc-net-utils
+Depends: 
+ hc-net-utils,
+ hc-block-utils
 Description: Metapackage which depends on all utility packages
  for the Hetzner Cloud platform
 

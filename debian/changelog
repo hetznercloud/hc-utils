@@ -1,5 +1,11 @@
 hc-utils (0.0.2-1) unstable; urgency=medium
 
+  * add block storage volume udev rule
+
+ -- Markus Schade <markus.schade@hetzner.com>  Wed, 03 Jul 2019 14:19:04 +0200
+
+hc-utils (0.0.1-1) unstable; urgency=medium
+
   * Initial release.
 
  -- Markus Schade <markus.schade@hetzner.com>  Tue, 02 Jul 2019 14:17:16 +0200
