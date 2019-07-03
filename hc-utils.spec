@@ -15,16 +15,15 @@ URL:		https://github.com/hetznercloud/hc-utils
 Source0:	81-hc-network-interfaces.rules
 Source1:	99-hc-volume-automount.rules
 Source2:	hc-ifscan
-Source3:	debian/hc-net-utils.hc-net-ifup@.service
-Source4:	debian/hc-net-utils.hc-net-scan.service
+Source3:	hc-net-ifup@.service
+Source4:	hc-net-scan.service
 
 BuildArch:	noarch
 BuildRequires:	systemd-units
 Requires:	curl
-Requires:	dchlient
+Requires:	dhclient
 Requires:	iproute
 Requires:	systemd-units
-
 
 %description
 hc-utils contains utilities to automatically configure
@@ -38,7 +37,9 @@ Hetzner Cloud private network interfaces and block storage volumes
 #rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
 install -m644 %{SOURCE0} $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
-#install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
+install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/
+
+install -d -m755 $RPM_BUILD_ROOT%{_sbindir}
 install -m755 %{SOURCE2} $RPM_BUILD_ROOT%{_sbindir}/
 
 install -d -m755 $RPM_BUILD_ROOT%{_unitdir}
