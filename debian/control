@@ -1,4 +1,4 @@
-Source: hc-net-utils
+Source: hc-utils
 Section: admin
 Priority: optional
 Maintainer: Markus Schade <markus.schade@hetzner.com>
@@ -6,8 +6,21 @@ Build-Depends: debhelper (>= 9)
 Standards-Version: 4.3.0
 Homepage: https://github.com/hetznercloud/hc-net-utils
 
+Package: hc-utils
+Architecture: all
+Depends: hc-net-utils
+Description: Metapackage which depends on all utility packages
+ for the Hetzner Cloud platform
+
 Package: hc-net-utils
-Architecture: any
+Architecture: all
 Description: A set of network tools for Hetzner Cloud PNIs
  hc-net-utils contains utilities to automatically configure
  Hetzner Cloud private network interfaces.
+
+Package: hc-block-utils
+Architecture: all
+Depends: curl
+Description: A set of tools for Hetzner Cloud volumes.
+ hc-block-utils contains utilities to automatically configure
+ Hetzner Cloud block storage volumes
