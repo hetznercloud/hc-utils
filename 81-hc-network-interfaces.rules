@@ -4,5 +4,5 @@
 # for the specific language governing permissions and limitations under
 # the License.
 
-ACTION=="add", SUBSYSTEM=="net", ENV{ID_NET_NAME_MAC}=="enx860000*",  TAG+="systemd", ENV{SYSTEMD_WANTS}+="hc-net-ifup@$env{INTERFACE}"
-ACTION=="remove", SUBSYSTEM=="net", RUN+="/sbin/ip link set $env{INTERFACE} down"
+ACTION=="add", SUBSYSTEM=="net", ENV{ID_NET_NAME_MAC}=="enx860000*",  TAG+="systemd", ENV{SYSTEMD_WANTS}+="hc-net-ifup@$env{ID_NET_NAME}"
+ACTION=="remove", SUBSYSTEM=="net", RUN+="/sbin/ip link set $env{ID_NET_NAME} down"
