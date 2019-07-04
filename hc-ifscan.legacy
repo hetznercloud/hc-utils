@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Copyright 2019 Hetzner Online GmbH
+#
+# Licensed under the MIT License. See the LICENSE accompanying this file
+# for the specific language governing permissions and limitations under
+# the License.
+
+if [ $UID -ne 0 ]; then
+  echo "error: ${0##*/} must be run as root"
+  exit 1
+fi
+
+logger --tag hc-ifscan "Scanning for unconfigured interfaces"
+for dev in $(find /sys/class/net/eth*) ; do
+  state=$(cat ${dev}/operstate)
+  if [ "${state}" == "down" ] ; then
+    logger --tag hc-ifscan "Configuring ${dev##*/}"
+    /bin/systemctl start hc-net-ifup@${dev##*/}
+  fi
+done
