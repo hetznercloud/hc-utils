@@ -6,26 +6,13 @@ Build-Depends:
  debhelper (>= 9),
  dh-systemd
 Standards-Version: 4.3.0
-Homepage: https://github.com/hetznercloud/hc-net-utils
+Homepage: https://github.com/hetznercloud/hc-utils
 
 Package: hc-utils
-Architecture: all
+Architecture: any
 Depends: 
- hc-net-utils,
- hc-block-utils
-Description: Metapackage which depends on all utility packages
- for the Hetzner Cloud platform
-
-Package: hc-net-utils
-Architecture: all
-Depends: iproute2
-Description: A set of network tools for Hetzner Cloud PNIs
- hc-net-utils contains utilities to automatically configure
- Hetzner Cloud private network interfaces.
-
-Package: hc-block-utils
-Architecture: all
-Depends: curl
-Description: A set of tools for Hetzner Cloud volumes.
- hc-block-utils contains utilities to automatically configure
- Hetzner Cloud block storage volumes
+ iproute2,
+ curl
+Description: A set of tools for the Hetzner Cloud platform
+ hc-utils contains utilities to automatically configure
+ Hetzner Cloud private network interfaces and block storage volumes

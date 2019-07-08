@@ -1,1 +1,22 @@
-debian/hc-net-utils.hc-net-ifup@.service
+# Copyright 2012 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright 2019 Hetzner Online GmbH
+#
+# Licensed under the MIT License. See the LICENSE accompanying this file
+# for the specific language governing permissions and limitations under
+# the License.
+
+# This service start a DHCP client on private network interfaces
+
+[Unit]
+Description=Enable Hetzner Cloud private network interfaces %i
+After=network-online.target
+#This makes sure all subprocesses will be killed if the PNI is removed
+BindsTo=sys-subsystem-net-devices-%i.device
+
+#We don't want to run if it already being managed by network.service
+ConditionPathExists=!/run/dhclient-%i.pid
+
+[Service]
+RemainAfterExit=true
+ExecStart=/sbin/dhclient -1 -4 -v -pf /run/dhclient-%i.pid -lf /var/lib/dhclient/dhclient-%i.lease %i
+
