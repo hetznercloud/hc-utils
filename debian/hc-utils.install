@@ -1,2 +1,3 @@
 /81-hc-network-interfaces.rules /lib/udev/rules.d
+/99-hc-volume-automount.rules /lib/udev/rules.d
 /hc-ifscan /usr/sbin

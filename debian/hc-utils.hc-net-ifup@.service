@@ -14,7 +14,7 @@ After=network-online.target
 BindsTo=sys-subsystem-net-devices-%i.device
 
 #We don't want to run if it already being managed by network.service
-ConditionPathExists=!/run/dhclient-%i.pid
+ConditionPathExists=!/run/dhclient.%i.pid
 
 [Service]
 RemainAfterExit=true
