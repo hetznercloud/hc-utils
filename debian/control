@@ -9,7 +9,7 @@ Standards-Version: 4.3.0
 Homepage: https://github.com/hetznercloud/hc-utils
 
 Package: hc-utils
-Architecture: any
+Architecture: all
 Depends: 
  iproute2,
  curl

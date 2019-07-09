@@ -10,7 +10,7 @@
 
 Name:		hc-utils
 Version:	0.0.1
-Release:	0%{?dist}
+Release:	1%{?dist}
 Summary:	A set of utilities for Hetzner Cloud
 Group:		System Tools
 
