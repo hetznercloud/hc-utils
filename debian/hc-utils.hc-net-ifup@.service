@@ -19,4 +19,4 @@ ConditionPathExists=!/run/dhclient.%i.pid
 [Service]
 RemainAfterExit=true
 ExecStart=/sbin/dhclient -1 -4 -v -pf /run/dhclient.%i.pid -lf /var/lib/dhcp/dhclient.%i.leases %i
-
+PIDFile=/run/dhclient.%i.pid
