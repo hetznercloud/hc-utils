@@ -1,3 +1,9 @@
+hc-utils (0.0.2-1) unstable; urgency=medium
+
+  * Add (missing) systemd-udevd drop-in
+
+ -- Markus Schade <markus.schade@hetzner.com>  Thu, 11 Jul 2019 10:43:21 +0200
+
 hc-utils (0.0.1-1) unstable; urgency=medium
 
   * Initial release.
