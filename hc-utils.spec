@@ -9,7 +9,7 @@
 %endif
 
 Name:		hc-utils
-Version:	0.0.1
+Version:	0.0.2
 Release:	1%{?dist}
 Summary:	A set of utilities for Hetzner Cloud
 Group:		System Tools
@@ -24,9 +24,11 @@ Source4:	hc-net-scan.service
 Source5:	90-hc-utils.preset
 Source6:	81-hc-network-interfaces.rules.legacy
 Source7:	hc-ifscan.legacy
+Source8:	hc-utils.conf
 
 BuildArch:	noarch
-BuildRequires:	systemd-units
+BuildRequires:	systemd
+
 Requires:	curl
 Requires:	dhclient
 Requires:	iproute
@@ -47,16 +49,18 @@ install -pm644 %{SOURCE1} $RPM_BUILD_ROOT%{_udevrulesdir}
 install -d -m755 $RPM_BUILD_ROOT%{_unitdir}
 install -pm644 %{SOURCE4} $RPM_BUILD_ROOT%{_unitdir}/hc-net-scan.service
 install -pm644 %{SOURCE3} $RPM_BUILD_ROOT%{_unitdir}/hc-net-ifup@.service
-
-install -m644 -D %{SOURCE5} $RPM_BUILD_ROOT%{_prefix}/lib/systemd/system-preset/90-hc-utils.preset
+install -d -m755 $RPM_BUILD_ROOT%{_unitdir}/systemd-udevd.service.d
+install -pm644 %{SOURCE8} $RPM_BUILD_ROOT%{_unitdir}/systemd-udevd.service.d/
+install -pm644 -D %{SOURCE5} $RPM_BUILD_ROOT%{_prefix}/lib/systemd/system-preset/90-hc-utils.preset
 
 install -d -m755 $RPM_BUILD_ROOT%{_sbindir}
+
 %if %{predict}
-install -m644 %{SOURCE0} $RPM_BUILD_ROOT%{_udevrulesdir}/81-hc-network-interfaces.rules
-install -m755 %{SOURCE2} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
+install -pm644 %{SOURCE0} $RPM_BUILD_ROOT%{_udevrulesdir}/81-hc-network-interfaces.rules
+install -pm755 %{SOURCE2} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %else
-install -m644 %{SOURCE6} $RPM_BUILD_ROOT%{_udevrulesdir}/81-hc-network-interfaces.rules
-install -m755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
+install -pm644 %{SOURCE6} $RPM_BUILD_ROOT%{_udevrulesdir}/81-hc-network-interfaces.rules
+install -pm755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %endif # predict
 
 %post
@@ -73,6 +77,7 @@ install -m755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %{_sbindir}/hc-ifscan
 %attr(0644,root,root) %{_unitdir}/hc-net-scan.service
 %attr(0644,root,root) %{_unitdir}/hc-net-ifup@.service
+%attr(0644,root,root) %{_unitdir}/systemd-udevd.service.d/hc-utils.conf
 %{_prefix}/lib/systemd/system-preset/90-hc-utils.preset
 
 %doc
@@ -82,3 +87,8 @@ install -m755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %changelog
 * Wed Jul 03 2019 Markus Schade <markus.schade@hetzner.com>
 - initial packaging as rpm
+
+* Thu Jul 11 2019 Markus Schade <markus.schade@hetzner.com>
+- add (missing) udevd drop-in to allow curl from metadata service
+- initial packaging as rpm
+
