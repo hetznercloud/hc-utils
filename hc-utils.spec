@@ -85,10 +85,9 @@ install -pm755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %license
 
 %changelog
-* Wed Jul 03 2019 Markus Schade <markus.schade@hetzner.com>
-- initial packaging as rpm
-
 * Thu Jul 11 2019 Markus Schade <markus.schade@hetzner.com>
 - add (missing) udevd drop-in to allow curl from metadata service
 - initial packaging as rpm
 
+* Wed Jul 03 2019 Markus Schade <markus.schade@hetzner.com>
+- initial packaging as rpm
