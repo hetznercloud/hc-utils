@@ -12,7 +12,7 @@ if [ $UID -ne 0 ]; then
 fi
 
 logger --tag hc-ifscan "Scanning for unconfigured interfaces"
-for dev in $(find /sys/class/net/ens*) ; do
+for dev in $(find /sys/class/net/en*) ; do
   state=$(cat ${dev}/operstate)
   if [ "${state}" == "down" ] ; then
     logger --tag hc-ifscan "Configuring ${dev##*/}"

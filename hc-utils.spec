@@ -9,7 +9,7 @@
 %endif
 
 Name:		hc-utils
-Version:	0.0.2
+Version:	0.0.3
 Release:	1%{?dist}
 Summary:	A set of utilities for Hetzner Cloud
 Group:		System Tools
@@ -85,6 +85,9 @@ install -pm755 %{SOURCE7} $RPM_BUILD_ROOT%{_sbindir}/hc-ifscan
 %license
 
 %changelog
+* Tue Feb 25 2020 Tom Siewert <tom.siewert@hetzner.com>
+- Changed hc-ifscan for Q35 compatibility
+
 * Thu Jul 11 2019 Markus Schade <markus.schade@hetzner.com>
 - add (missing) udevd drop-in to allow curl from metadata service
 - initial packaging as rpm
