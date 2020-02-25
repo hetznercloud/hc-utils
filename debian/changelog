@@ -1,3 +1,9 @@
+hc-utils (0.0.3-1) unstable; urgency=medium
+
+  * Changed hc-ifscan for Q35 compatibility
+
+ -- Tom Siewert <tom.siewert@hetzner.com>  Tue, 25 Feb 2020 15:17:24 +0200
+
 hc-utils (0.0.2-1) unstable; urgency=medium
 
   * Add (missing) systemd-udevd drop-in
