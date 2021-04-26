@@ -3,8 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Markus Schade <markus.schade@hetzner.com>
 Build-Depends:
- debhelper (>= 9),
- dh-systemd
+ debhelper-compat (= 12),
 Standards-Version: 4.3.0
 Homepage: https://github.com/hetznercloud/hc-utils
 

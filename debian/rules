@@ -4,11 +4,8 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@ --with systemd
+	dh $@
 
-override_dh_installinit:
-	dh_installinit --name=hc-net-ifup@
-	dh_installinit --name=hc-net-scan
-
-override_dh_systemd_enable:
-	dh_systemd_enable --name=hc-net-scan
+override_dh_installsystemd:
+	dh_installsystemd --name=hc-net-ifup@
+	dh_installsystemd --name=hc-net-scan
