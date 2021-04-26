@@ -1,3 +1,9 @@
+hc-utils (0.0.4-1) unstable; urgency=medium
+
+  * Rewrite udev network rule due to system/kernel event changes
+
+ -- Markus Schade <markus.schade@hetzner.com>  Mon, 26 Apr 2021 12:24:55 +0200
+
 hc-utils (0.0.3-1) unstable; urgency=medium
 
   * Changed hc-ifscan for Q35 compatibility
