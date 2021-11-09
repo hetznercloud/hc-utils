@@ -1,3 +1,9 @@
+hc-utils (0.0.4-2~tino) unstable; urgency=medium
+
+  * debian/compat needs to be removed
+
+ -- root <root@jump.sanctuary-prime.net>  Tue, 09 Nov 2021 19:01:22 +0100
+
 hc-utils (0.0.4-1) unstable; urgency=medium
 
   * Rewrite udev network rule due to system/kernel event changes
